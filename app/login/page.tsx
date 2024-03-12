@@ -16,18 +16,13 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { Separator } from "@radix-ui/react-separator"
+import { Separator } from "@/components/ui/separator"
 import { FaGoogle } from "react-icons/fa6";
 import React from 'react'
 
 const page = () => {
   return (
-    <div className="h-screen p-14">
-      <Card className="h-full w-full flex p-10">
-        <div className="w-full">
-          <h1 className="text-3xl font-bold">Welcome to Video Conferencing App</h1>
-          <p className="text-gray-500">Sign in to start your meeting</p>
-        </div>
+    <div className="flex just-center h-screen p-14">
         <div className="w-full flex justify-center items-center">
           <Tabs defaultValue="signin" className="w-[400px]">
             <TabsList className="grid w-full grid-cols-2">
@@ -54,10 +49,10 @@ const page = () => {
                 </CardContent>
                 <CardFooter className="flex flex-col">
                   <Button className="w-full">Sign In</Button>
-                  <div className="flex m-4">
-                    <Separator />
-                    Sign In with
-                    <Separator />
+                  <div className="w-full flex justify-center mt-6 mb-4">
+                    <Separator className="w-1/3"/>
+                    <span className="text-[10px] text-slate-500 w-fit mx-4 -mt-1 uppercase">or continue with</span>
+                    <Separator className="w-1/3"/>
                   </div>
                   <Button variant="outline" className="w-12 h-12 rounded-full">
                     <FaGoogle />
@@ -103,8 +98,7 @@ const page = () => {
             </TabsContent>
           </Tabs>
         </div>
-      </Card>
-    </div>
+      </div>
   )
 }
 
