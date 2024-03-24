@@ -37,18 +37,18 @@ const BottomNavbar = () => {
         </div>
 
       <div className="flex w-fit text-slate-500 space-x-4">
-        <Button variant="outline" className="w-12 h-12 rounded-full ">
-          <FaHome />
+        <Button variant="outline" className="w-14 h-14 rounded-full ">
+          <FaHome className="text-xl"/>
         </Button>
 
-        <Button variant="outline" className="w-12 h-12 rounded-full ">
-          <FaBell />
+        <Button variant="outline" className="w-14 h-14 rounded-full ">
+          <FaBell className="text-xl"/>
         </Button>
       </div>
 
       <div className="flex  text-slate-500 text-lg items-center">
-        <Button variant="outline" className="w-12 h-12 rounded-full ">
-          <FaUser />
+        <Button variant="outline" className="w-14 h-14 rounded-full ">
+          <FaUser className="text-xl"/>
         </Button>
         </div>
     </nav>

@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import { FaGoogle, FaGithub } from "react-icons/fa6";
+import { FaGoogle, FaGithub, FaFacebook } from "react-icons/fa6";
 import React, { useState } from "react";
 
 import {
@@ -134,6 +134,12 @@ const page = () => {
                   >
                     <FaGithub className="text-xl" />
                   </Button>
+                  <Button
+                    variant="outline"
+                    className="w-12 h-12 rounded-full p-0"
+                  >
+                    <FaFacebook className="text-xl" />
+                  </Button>
                 </div>
               </CardFooter>
             </Card>
@@ -197,6 +203,12 @@ const page = () => {
                     className="w-12 h-12 rounded-full p-0"
                   >
                     <FaGithub className="text-xl" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-12 h-12 rounded-full p-0"
+                  >
+                    <FaFacebook className="text-xl" />
                   </Button>
                 </div>
               </CardFooter>
