@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { FaHome, FaUser, FaBell } from 'react-icons/fa';
+import { FaHome, FaUser, FaBell, FaInfo } from 'react-icons/fa';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Input } from "@/components/ui/input";
@@ -63,8 +63,37 @@ const BottomNavbar = () => {
           <PopoverTrigger><Button variant="outline" className="w-14 h-14 rounded-full ">
             <FaBell className="text-xl" />
           </Button></PopoverTrigger>
-          <PopoverContent>Place content for the popover here.</PopoverContent>
+          <PopoverContent>
+            <div className="p-4">
+              <h3 className="text-lg font-semibold">Notifications</h3>
+              <div className="grid gap-4 mt-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-base font-semibold">New message</h4>
+                    <p className="text-sm text-slate-500">You have a new message from John Doe</p>
+                  </div>
+                </div>
+                <Separator/>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-base font-semibold">New message</h4>
+                    <p className="text-sm text-slate-500">You have a new message from John Doe</p>
+                  </div>
+                </div>
+                <Separator/>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-base font-semibold">New message</h4>
+                    <p className="text-sm text-slate-500">You have a new message from John Doe</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </PopoverContent>
         </Popover>
+        <Button variant="outline" className="w-14 h-14 rounded-full ">
+          <FaInfo className="text-xl" />
+        </Button>
 
 
       </div>

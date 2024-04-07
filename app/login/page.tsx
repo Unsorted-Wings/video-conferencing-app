@@ -72,8 +72,8 @@ const page = () => {
   };
   return (
     <div className="flex just-center h-screen p-14">
-      <div className="w-full p-4">
-        <h1 className="text-4xl font-bold text-center text-slate-900">
+      <div className="flex flex-col justify-center items-center w-full p-4">
+        <h1 className="text-4xl font-bold text-center text-white">
           Welcome to the login page
         </h1>
         <p className="text-center text-slate-500 text-lg">
