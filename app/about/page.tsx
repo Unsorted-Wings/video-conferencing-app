@@ -12,7 +12,7 @@ const AboutPage = () => {
                         Collab is a video conferencing application designed to provide seamless communication and collaboration experiences for teams and individuals. With Collab, you can easily host and join meetings, share screens, exchange messages, and more.
                     </p>
                     <p className="mb-6 text-lg leading-relaxed">
-                        Our mission is to empower teams and individuals to connect and collaborate effectively regardless of their location. Whether you're working remotely, managing a distributed team, or conducting virtual meetings, Collab is your go-to solution for productive and engaging communication.
+                        Our mission is to empower teams and individuals to connect and collaborate effectively regardless of their location. Whether you&apos;re working remotely, managing a distributed team, or conducting virtual meetings, Collab is your go-to solution for productive and engaging communication.
                     </p>
                     <p className="mb-6 text-lg leading-relaxed">
                         Thank you for choosing Collab as your video conferencing platform. We are committed to continually improving our services and features to enhance your collaboration experience.
