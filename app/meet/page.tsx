@@ -7,13 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import MeetNav from "@/components/MeetNavigationBottom";
+import MeetNavigationBottom from "@/components/MeetNavigationBottom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const MeetingRoom = () => {
   return (
     <div className="h-screen p-4">
-      <MeetNav />
+      <MeetNavigationBottom />
       <div className="h-[90%] w-full flex justify-center items-center">
         <Card className="w-2/3 h-3/4 ">
 

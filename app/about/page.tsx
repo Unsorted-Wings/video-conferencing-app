@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '@/components/Navbar';
+import BottomNavbar from '@/components/Navbar';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Umar from '@/public/images/umar.jpg';
@@ -9,7 +9,7 @@ import Rohit from '@/public/images/rohit.jpg';
 const AboutPage = () => {
     return (
         <div className="flex h-screen">
-            <Navbar />
+            <BottomNavbar />
             <div className="flex w-full p-8">
                 <div className="w-1/2 p-6 text-justify">
                     <h1 className="text-4xl font-bold mb-6">About Collab</h1>

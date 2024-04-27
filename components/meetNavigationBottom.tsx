@@ -14,7 +14,7 @@ import {
 
 
 
-const meetNavigationBottom = () => {
+const MeetNavigationBottom = () => {
   // State to store the current time
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -145,4 +145,4 @@ const meetNavigationBottom = () => {
   );
 };
 
-export default meetNavigationBottom;
+export default MeetNavigationBottom;
