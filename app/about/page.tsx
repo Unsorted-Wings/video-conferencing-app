@@ -1,5 +1,10 @@
 import React from 'react';
 import Navbar from '@/components/navbar';
+import Image from 'next/image'; 
+import { Button } from '@/components/ui/button';
+import Umar from '@/public/images/umar.jpg';
+import Tirth from '@/public/images/tirth.jpg';
+import Rohit  from '@/public/images/rohit.jpg';
 
 const AboutPage = () => {
     return (
@@ -18,7 +23,7 @@ const AboutPage = () => {
                         Thank you for choosing Collab as your video conferencing platform. We are committed to continually improving our services and features to enhance your collaboration experience.
                     </p>
                     <div className="flex justify-center">
-                        <img src="/collab-logo.png" alt="Collab Logo" className="w-32 h-32" />
+                    <Button variant="secondary" className="px-4 py-5 text-lg">Join a meet</Button>
                     </div>
                 </div>
 
@@ -26,19 +31,19 @@ const AboutPage = () => {
                     <h2 className="text-2xl font-bold mt-8 mb-4">Our Team</h2>
                     <div className="grid grid-cols-3 gap-8">
                         <div className="flex flex-col items-center">
-                            <img src="/team-member-1.jpg" alt="Team Member 1" className="w-32 h-32 rounded-full mb-4" />
-                            <p className="text-lg font-bold">John Doe</p>
-                            <p className="text-lg text-gray-500">CEO & Co-founder</p>
+                        <Image src={Tirth} alt="Team Member 1" width={128} height={128} className="rounded-full mb-4" />
+                            <p className="text-lg font-bold">Tirth Patel</p>
+                            <p className="text-lg text-gray-500">Frontend Developer</p>
                         </div>
                         <div className="flex flex-col items-center">
-                            <img src="/team-member-2.jpg" alt="Team Member 2" className="w-32 h-32 rounded-full mb-4" />
-                            <p className="text-lg font-bold">Jane Doe</p>
-                            <p className="text-lg text-gray-500">CTO & Co-founder</p>
+                        <Image src={Umar} alt="Team Member 1" width={128} height={128} className="rounded-full mb-4" />
+                            <p className="text-lg font-bold">Mhd. Umar</p>
+                            <p className="text-lg text-gray-500">Backend Developer</p>
                         </div>
                         <div className="flex flex-col items-center">
-                            <img src="/team-member-3.jpg" alt="Team Member 3" className="w-32 h-32 rounded-full mb-4" />
-                            <p className="text-lg font-bold">Alice Doe</p>
-                            <p className="text-lg text-gray-500">Lead Developer</p>
+                        <Image src={Rohit} alt="Team Member 1" width={128} height={128} className="rounded-full mb-4" />
+                            <p className="text-lg font-bold">Rohit Shukla</p>
+                            <p className="text-lg text-gray-500">Full Stack Developer</p>
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 import {
   Sheet,
   SheetClose,
@@ -56,9 +57,11 @@ const BottomNavbar = () => {
       </div>
 
       <div className="flex w-fit text-slate-500 space-x-4">
-        <Button variant="outline" className="w-14 h-14 rounded-full ">
-          <FaHome className="text-xl" />
-        </Button>
+        <Link href="../">
+          <Button variant="outline" className="w-14 h-14 rounded-full ">
+            <FaHome className="text-xl" />
+          </Button>
+        </Link>
         <Popover>
           <PopoverTrigger><Button variant="outline" className="w-14 h-14 rounded-full ">
             <FaBell className="text-xl" />
@@ -73,14 +76,14 @@ const BottomNavbar = () => {
                     <p className="text-sm text-slate-500">You have a new message from John Doe</p>
                   </div>
                 </div>
-                <Separator/>
+                <Separator />
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="text-base font-semibold">New message</h4>
                     <p className="text-sm text-slate-500">You have a new message from John Doe</p>
                   </div>
                 </div>
-                <Separator/>
+                <Separator />
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="text-base font-semibold">New message</h4>
@@ -90,10 +93,13 @@ const BottomNavbar = () => {
               </div>
             </div>
           </PopoverContent>
+
         </Popover>
-        <Button variant="outline" className="w-14 h-14 rounded-full ">
-          <FaInfo className="text-xl" />
-        </Button>
+        <Link href="/about">
+          <Button variant="outline" className="w-14 h-14 rounded-full ">
+            <FaInfo className="text-xl" />
+          </Button>
+        </Link>
 
 
       </div>
