@@ -21,7 +21,9 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 
 
 
@@ -112,17 +114,31 @@ const BottomNavbar = () => {
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>Edit profile</SheetTitle>
+              <SheetTitle>Profile</SheetTitle>
               <SheetDescription>
                 Make changes to your profile here. Click save when you&apos;re done.
               </SheetDescription>
             </SheetHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
+            <div className="grid gap-4 py-4 mb-2">
+              <div className="grid items-center justify-center my-4">
+                <Avatar className='w-[120px] h-[120px]'>
+                  <AvatarImage  src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </div>
+
+
+              <div className="grid grid-cols-4 items-center gap-4 mt-4">
                 <Label htmlFor="name" className="text-right">
                   Name
                 </Label>
                 <Input id="name" value="Pedro Duarte" className="col-span-3" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="email" className="text-right">
+                  Email
+                </Label>
+                <Input id="email" value="peduarte@gmail.com" className="col-span-3" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="username" className="text-right">

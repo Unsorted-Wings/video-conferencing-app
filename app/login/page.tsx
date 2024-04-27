@@ -69,12 +69,12 @@ const page = () => {
       console.log("Error occured", error);
       setLoginError(error.message);
     }
-  };
+  }; 
   return (
     <div className="flex just-center h-screen p-14">
       <div className="flex flex-col justify-center items-center w-full p-4">
         <h1 className="text-4xl font-bold text-center text-white">
-          Welcome to the login page
+          Welcome to the Collab
         </h1>
         <p className="text-center text-slate-500 text-lg">
           Please sign in to continue
