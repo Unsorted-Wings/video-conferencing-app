@@ -28,16 +28,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 
 const BottomNavbar = () => {
-  // State to store the current time
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState(null);
+  const [mounted, setMounted] = useState(false);
 
   // Function to update the current time
   const updateCurrentTime = () => {
     setCurrentTime(new Date());
   };
 
-  // Effect to update the time every minute
+  // Effect to update the time every minute and set the mounted state
   useEffect(() => {
+    setMounted(true);
+    updateCurrentTime(); // Initial time set
     const intervalId = setInterval(updateCurrentTime, 60000); // Update every minute
 
     // Cleanup function to clear the interval on component unmount
@@ -46,9 +48,12 @@ const BottomNavbar = () => {
 
   // Function to get the day of the week
   const getDayOfWeek = () => {
+    if (!currentTime) return '';
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return daysOfWeek[currentTime.getDay()];
   };
+
+  if (!mounted || !currentTime) return null; // Avoid rendering on the server
 
   return (
     <nav className="fixed bottom-5 left-0 right-0 flex px-6 justify-between items-center">
@@ -59,7 +64,7 @@ const BottomNavbar = () => {
       </div>
 
       <div className="flex w-fit text-slate-500 space-x-4">
-        <Link href="../">
+        <Link href="/home">
           <Button variant="outline" className="w-14 h-14 rounded-full ">
             <FaHome className="text-xl" />
           </Button>
