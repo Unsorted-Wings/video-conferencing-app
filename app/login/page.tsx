@@ -12,9 +12,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import { FaGoogle, FaGithub, FaFacebook } from "react-icons/fa6";
+import { FaGoogle, FaGithub, FaFacebook } from "react-icons/fa";
 import React, { useState } from "react";
-// import { withRouter } from "react-router-dom";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -26,98 +25,121 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { app } from "../api/firebase/firebaseConfig";
-import {
-  set,
-  ref,
-  getDatabase,
-  child,
-  update,
-  remove,
-} from "firebase/database";
-
-import { useRouter } from "next/router";
+import { set, ref, getDatabase } from "firebase/database";
+import { useRouter } from "next/navigation";
 
 const db = getDatabase(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
-const page = (history: any) => {
+
+const page = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  function putData() {
-    console.log("Hello");
-    set(ref(db, "user/" + userName), {
-      name: userName,
+  const router = useRouter();
+
+  const putData = (userId, name, email) => {
+    set(ref(db, "users/" + userId), {
+      username: name,
       email: email,
-      password: password,
     })
       .then(() => {
         console.log("Data saved successfully");
       })
       .catch((error) => {
-        console.log(error);
+        console.error("Error saving data:", error);
       });
-  }
+  };
+
   const signupHandler = async () => {
-    if (!userName && !email && !password) {
+    if (!userName || !email || !password) {
       return;
     }
-    try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("User created successfully", user);
-      putData();
 
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
       await updateProfile(auth.currentUser, {
         displayName: userName,
       });
-      // router.push("/home");
+      putData(user.uid, userName, email); // Pass the user ID, user name, and email
+      localStorage.setItem("user", JSON.stringify(user));
+      router.push("/home");
     } catch (error) {
-      console.log("Error occured", error);
+      console.error("Error occurred during signup:", error);
+      setLoginError(error.message);
     }
   };
+
   const signInWithGoogle = async () => {
     try {
-      const user = await signInWithPopup(auth, provider);
-      console.log("Sign in with google", user);
+      const userCredential = await signInWithPopup(auth, provider);
+      const user = userCredential.user;
+      putData(user.uid, user.displayName, user.email); // Pass the user ID, user name, and email
+      localStorage.setItem("user", JSON.stringify(user));
+      router.push("/home");
     } catch (error) {
-      console.log(error);
+      console.error("Error occurred during Google sign-in:", error);
+      setLoginError(error.message);
     }
   };
+
   const signInWithGithub = async () => {
     try {
-      const user = await signInWithPopup(auth, githubProvider);
-      console.log("Sign in with github", user);
+      const userCredential = await signInWithPopup(auth, githubProvider);
+      const user = userCredential.user;
+      putData(user.uid, user.displayName, user.email); // Pass the user ID, user name, and email
+      localStorage.setItem("user", JSON.stringify(user));
+      router.push("/home");
     } catch (error) {
-      console.log(error);
+      console.error("Error occurred during GitHub sign-in:", error);
+      setLoginError(error.message);
     }
   };
+
   const signInWithFacebook = async () => {
     try {
-      const user = await signInWithPopup(auth, facebookProvider);
-      console.log("Sign in with facebook", user);
+      const userCredential = await signInWithPopup(auth, facebookProvider);
+      const user = userCredential.user;
+      putData(user.uid, user.displayName, user.email); // Pass the user ID, user name, and email
+      localStorage.setItem("user", JSON.stringify(user));
+      router.push("/home");
     } catch (error) {
-      console.log(error);
+      console.error("Error occurred during Facebook sign-in:", error);
+      setLoginError(error.message);
     }
   };
+
   const loginHandler = async () => {
-    if (!email && !password) {
+    if (!email || !password) {
       return;
     }
+
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
-      setLoginError("Login successfull");
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      putData(user.uid, user.displayName, user.email); // Pass the user ID, user name, and email
+      localStorage.setItem("user", JSON.stringify(user));
+      router.push("/home");
     } catch (error) {
-      console.log("Error occured", error);
+      console.error("Error occurred during login:", error);
       setLoginError(error.message);
     }
   };
 
   return (
-    <div className="flex just-center h-screen p-14">
+    <div className="flex justify-center items-center h-screen p-14">
       <div className="flex flex-col justify-center items-center w-full p-4">
         <h1 className="text-4xl font-bold text-center text-white">
           Welcome to the login page
@@ -143,14 +165,12 @@ const page = (history: any) => {
               </CardHeader>
               <CardContent className="space-y-2">
                 <div className="space-y-1">
-                  <Label htmlFor="signUpEmail">Email</Label>
+                  <Label htmlFor="signInEmail">Email</Label>
                   <Input
-                    id="signUpEmail"
+                    id="signInEmail"
                     type="email"
                     required
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="space-y-1">
@@ -185,12 +205,14 @@ const page = (history: any) => {
                   <Button
                     variant="outline"
                     className="w-12 h-12 rounded-full p-0"
+                    onClick={signInWithGithub}
                   >
                     <FaGithub className="text-xl" />
                   </Button>
                   <Button
                     variant="outline"
                     className="w-12 h-12 rounded-full p-0"
+                    onClick={signInWithFacebook}
                   >
                     <FaFacebook className="text-xl" />
                   </Button>
@@ -225,10 +247,11 @@ const page = (history: any) => {
                   />
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="signInPassword">Password</Label>
+                  <Label htmlFor="signUpPassword">Password</Label>
                   <Input
-                    id="signInPassword"
+                    id="signUpPassword"
                     type="password"
+                    required
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>

@@ -19,7 +19,7 @@ const VideoPlayer = () => {
           style={{ padding: "10px", border: "2px solid black", margin: "10px" }}
         >
           <div>
-            <h5>{name || "Name"}</h5>
+            <h5>Host:{name || "Name"}</h5>
             <video
               playsInline
               muted

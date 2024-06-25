@@ -34,7 +34,7 @@
 //             setCall({ isReceivedCall: true, from, name: callerName, signal });
 //         });
 //     }, []);
-    
+
 //     const answerCall = () => {
 //         setCallAccepted(true);
 
@@ -78,26 +78,26 @@
 //             console.error("Missing user ID or own ID");
 //             return;
 //         }
-    
+
 //         const peer = new Peer({ initiator: true, trickle: false, stream });
-    
+
 //         peer.on("signal", (data) => {
 //             socket.emit("callUser", { userToCall: id, signalData: data, from: me, name });
 //         });
-    
+
 //         peer.on("stream", (currentStream) => {
 //             userVideo.current.srcObject = currentStream;
 //         });
-    
+
 //         socket.on("callAccepted", (signal) => {
 //             setCallAccepted(true);
 //             peer.signal(signal);
 //         });
-    
+
 //         peer.on("error", (err) => {
 //             console.error("Peer error:", err);
 //         });
-        
+
 //         connectionRef.current = peer;
 //     };
 
@@ -143,7 +143,7 @@
 //                     myVideo.current.srcObject = currentStream;
 //                 }
 //             });
-    
+
 //         const handleMe = (id) => {
 //             console.log("Connected as:", id);
 //             setMe(id);
@@ -152,16 +152,16 @@
 //             console.log("Receiving call from:", from);
 //             setCall({ isReceivedCall: true, from, name: callerName, signal });
 //         };
-    
+
 //         socket.on("me", handleMe);
 //         socket.on("callUser", handleCallUser);
-    
+
 //         return () => {
 //             socket.off("me", handleMe);
 //             socket.off("callUser", handleCallUser);
 //         };
 //     }, []);
-    
+
 
 //     const answerCall = () => {
 //         setCallAccepted(true);
@@ -234,6 +234,7 @@
 import React, { createContext, useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import Peer from 'simple-peer';
+
 
 const SocketContext = createContext();
 const socket = io("http://localhost:5000");

@@ -225,13 +225,6 @@ import { Input } from "@/components/ui/input";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { SocketContext } from "@/context/SocketContext";
 import React, { useState, useContext } from "react";
-import {
-  FaMicrophoneSlash,
-  FaVideoSlash,
-  FaVideo,
-  FaPowerOff,
-  FaMicrophone,
-} from "react-icons/fa";
 
 const Options = ({ children }) => {
   const {
@@ -275,27 +268,14 @@ const Options = ({ children }) => {
             }}
           >
             <div style={{ padding: "10px" }}>
-              <h6>Account Info</h6>
-              <Input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
-              />
               {console.log(me)}
-              <CopyToClipboard text={me}>
-                <Button>Copy Your ID</Button>
-              </CopyToClipboard>
-            </div>
-            <div style={{ padding: "10px" }}>
-              <h6>Make a call</h6>
-              <Input
-                type="text"
-                value={idToCall}
-                onChange={(e) => setIdToCall(e.target.value)}
-                placeholder="ID to call"
-              />
-              <Button onClick={handleCallUser}>Call</Button>
+              <h5>
+                Your meeting code: <span style={{padding:"10px"}}>{me}</span>
+                
+                <CopyToClipboard text={me}>
+                  <Button>Copy Your ID</Button>
+                </CopyToClipboard>
+              </h5>
             </div>
           </div>
         )}
@@ -308,23 +288,12 @@ const Options = ({ children }) => {
               padding: "20px",
             }}
           >
-            
+            <Button onClick={leaveCall}>Hang Up</Button>
             <Button onClick={toggleAudio}>
-              {audioMuted ? (
-                <FaMicrophoneSlash className="text-xl" />
-              ) : (
-                <FaMicrophone className="text-xl" />
-              )}
+              {audioMuted ? "Unmute Audio" : "Mute Audio"}
             </Button>
             <Button onClick={toggleVideo}>
-              {videoMuted ? (
-                <FaVideoSlash className="text-xl" />
-              ) : (
-                <FaVideo className="text-xl" />
-              )}
-            </Button>
-            <Button onClick={leaveCall}>
-              <FaPowerOff className="text-xl" />
+              {videoMuted ? "Unmute Video" : "Mute Video"}
             </Button>
           </div>
         )}
