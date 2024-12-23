@@ -2,7 +2,7 @@
 import { SocketContext } from "@/context/SocketContext";
 import React, { useEffect, useRef, useContext } from "react";
 
-const VideoPlayer = () => {
+const VideoPlayer = (props) => {
   const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } =
     useContext(SocketContext);
 
@@ -11,7 +11,7 @@ const VideoPlayer = () => {
       style={{
         display: "flex",
         justifyContent: "center",
-        flexDirection: "column",
+        flexDirection: "row",
       }}
     >
       {stream && (
@@ -35,7 +35,7 @@ const VideoPlayer = () => {
           style={{ padding: "10px", border: "2px solid black", margin: "10px" }}
         >
           <div>
-            <h5>{call.name || "Name"}</h5>
+            <h5>{call.name || "Host "}</h5>
             <video
               playsInline
               ref={userVideo}

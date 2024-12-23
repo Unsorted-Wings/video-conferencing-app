@@ -209,13 +209,6 @@ const page = () => {
                   >
                     <FaGithub className="text-xl" />
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="w-12 h-12 rounded-full p-0"
-                    onClick={signInWithFacebook}
-                  >
-                    <FaFacebook className="text-xl" />
-                  </Button>
                 </div>
               </CardFooter>
             </Card>
@@ -281,13 +274,6 @@ const page = () => {
                     onClick={signInWithGithub}
                   >
                     <FaGithub className="text-xl" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="w-12 h-12 rounded-full p-0"
-                    onClick={signInWithFacebook}
-                  >
-                    <FaFacebook className="text-xl" />
                   </Button>
                 </div>
               </CardFooter>

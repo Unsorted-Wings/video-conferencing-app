@@ -215,15 +215,17 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { app } from "@/app/api/firebase/firebaseConfig";
 import { getDatabase, ref, get } from "firebase/database";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useRouter } from 'next/navigation';
 
 const BottomNavbar = () => {
   const [currentTime, setCurrentTime] = useState(null);
   const [mounted, setMounted] = useState(false);
   const [userData, setUserData] = useState({ name: "", email: "" });
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchUserData = async (userId) => {
+    const fetchUserData = async (userId: any) => {
       try {
         const db = getDatabase(app);
         const dbRef = ref(db, `users/${userId}`);
@@ -265,6 +267,17 @@ const BottomNavbar = () => {
     if (!currentTime) return "";
     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     return daysOfWeek[currentTime.getDay()];
+  };
+
+  const handleLogout = async () => {
+    const auth = getAuth(app);
+    try {
+      await signOut(auth);
+      localStorage.removeItem("user");
+      router.push("/login"); // Redirect to login page after logout
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   if (!mounted || !currentTime) return null;
@@ -336,10 +349,6 @@ const BottomNavbar = () => {
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Profile</SheetTitle>
-              <SheetDescription>
-                Make changes to your profile here. Click save when you&apos;re
-                done.
-              </SheetDescription>
             </SheetHeader>
             <div className="grid gap-4 py-4 mb-2">
               <div className="grid items-center justify-center my-4">
@@ -354,7 +363,9 @@ const BottomNavbar = () => {
                 </Label>
                 <Input
                   id="name"
-                  value={userData.name || currentUser.displayName}
+                  value={
+                    userData.name || (currentUser && currentUser.displayName)
+                  }
                   className="col-span-3"
                 />
               </div>
@@ -364,14 +375,16 @@ const BottomNavbar = () => {
                 </Label>
                 <Input
                   id="email"
-                  value={userData.email || currentUser.email}
+                  value={userData.email || (currentUser && currentUser.email)}
                   className="col-span-3"
                 />
               </div>
             </div>
             <SheetFooter>
               <SheetClose asChild>
-                <Button type="submit">Save changes</Button>
+                <Button variant="destructive" onClick={handleLogout}>
+                  Log Out
+                </Button>
               </SheetClose>
             </SheetFooter>
           </SheetContent>

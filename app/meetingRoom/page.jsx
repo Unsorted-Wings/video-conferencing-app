@@ -22,8 +22,8 @@
 
 // export default MeetingRoom;
 "use client";
-
 import dynamic from "next/dynamic";
+import { useType } from "@/context/TypeContext";
 
 // Dynamically import VideoPlayer with ssr: false
 const VideoPlayer = dynamic(() => import("./VideoPlayer"), {
@@ -34,13 +34,13 @@ import Options from "./Options";
 import Notification from "./Notification";
 
 const MeetingRoom = () => {
- 
+  const { type } = useType();
 
   return (
     <>
-      <VideoPlayer />
-      <Options>
-        <Notification />
+      <VideoPlayer type={type} />
+      <Options type={type}>
+        <Notification type={type} />
       </Options>
     </>
   );
